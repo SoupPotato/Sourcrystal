@@ -439,8 +439,9 @@ FindAliveEnemyMonsWithASuperEffectiveMove:
 
 	and c
 	ld c, a
-FindEnemyMonsWithASuperEffectiveMove:
+	; fallthrough
 
+FindEnemyMonsWithASuperEffectiveMove:
 	ld a, -1
 	ld [wEnemyAISwitchScore], a
 	ld hl, wOTPartyMon1Moves

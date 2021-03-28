@@ -21,7 +21,6 @@ UpdateCGBPals::
 
 
 ForceUpdateCGBPals::
-
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)

@@ -54,8 +54,6 @@ UpdateSound::
 
 _LoadMusicByte::
 ; wCurMusicByte = [a:de]
-EXPORT LoadMusicByte
-
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 

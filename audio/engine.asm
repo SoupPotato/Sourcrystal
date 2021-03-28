@@ -56,7 +56,6 @@ _MapSetup_Sound_Off::
 	pop hl
 	ret
 
-
 MusicFadeRestart:
 ; restart but keep the music id to fade in to
 	ld a, [wMusicFadeID + 1]
@@ -70,18 +69,15 @@ MusicFadeRestart:
 	ld [wMusicFadeID + 1], a
 	ret
 
-
 MusicOn:
 	ld a, 1
 	ld [wMusicPlaying], a
 	ret
 
-
 MusicOff:
 	xor a
 	ld [wMusicPlaying], a
 	ret
-
 
 _UpdateSound::
 ; called once per frame
@@ -211,7 +207,6 @@ _UpdateSound::
 	ld a, [wSoundOutput]
 	ld [rNR51], a
 	ret
-
 
 UpdateChannels:
 	ld hl, .ChannelFnPtrs
@@ -507,7 +502,6 @@ endr
 	ld [rNR44], a
 	ret
 
-
 _CheckSFX:
 ; return carry if any sfx channels are active
 	ld hl, wChannel5Flags1
@@ -528,7 +522,6 @@ _CheckSFX:
 .sfxon
 	scf
 	ret
-
 
 PlayDanger:
 	ld a, [wLowHealthAlarm]
@@ -592,7 +585,6 @@ PlayDanger:
 	or $11
 	ld [wSoundOutput], a
 	ret
-
 
 DangerSoundHigh:
 	db $80 ; duty 50%
@@ -718,7 +710,6 @@ FadeMusic:
 	ld [wVolume], a
 	ret
 
-
 LoadNote:
 	; wait for pitch wheel to finish
 	ld hl, CHANNEL_FLAGS2
@@ -839,7 +830,6 @@ LoadNote:
 	ld [hl], a
 	ret
 
-
 HandleTrackVibrato:
 ; handle duty, cry pitch, and vibrato
 	ld hl, CHANNEL_FLAGS2
@@ -957,7 +947,6 @@ HandleTrackVibrato:
 .quit
 	ret
 
-
 ApplyPitchWheel:
 	; quit if pitch wheel inactive
 	ld hl, CHANNEL_FLAGS2
@@ -1073,7 +1062,6 @@ ApplyPitchWheel:
 	set NOTE_DUTY_OVERRIDE, [hl]
 	ret
 
-
 HandleNoise:
 	; is noise sampling on?
 	ld hl, CHANNEL_FLAGS1
@@ -1099,7 +1087,6 @@ HandleNoise:
 	dec a
 	ld [wNoiseSampleDelay], a
 	ret
-
 
 ReadNoiseSample:
 ; sample struct:
@@ -1150,7 +1137,6 @@ ReadNoiseSample:
 
 .quit
 	ret
-
 
 ParseMusic:
 ; parses until a note is read or the song is ended
@@ -1260,7 +1246,6 @@ ParseMusic:
 	ld [hli], a ; bank
 	ret
 
-
 RestoreVolume:
 	; ch5 only
 	ld a, [wCurChannel]
@@ -1279,7 +1264,6 @@ RestoreVolume:
 	ld [wLastVolume], a
 	ld [wSFXPriority], a
 	ret
-
 
 ParseSFXOrRest:
 	; turn noise sampling on
@@ -1310,7 +1294,6 @@ ParseSFXOrRest:
 	add hl, bc
 	ld [hl], a
 	ret
-
 
 GetNoiseSample:
 ; load ptr to sample header in wNoiseSampleAddress
@@ -1368,7 +1351,6 @@ GetNoiseSample:
 	ld [wNoiseSampleDelay], a
 	ret
 
-
 ParseMusicCommand:
 	; reload command
 	ld a, [wCurMusicByte]
@@ -1385,7 +1367,6 @@ ParseMusicCommand:
 	ld h, [hl]
 	ld l, a
 	jp hl
-
 
 MusicCommands:
 ; entries correspond to macros/sound.asm enumeration
@@ -1448,7 +1429,6 @@ MusicF7:
 MusicF8:
 	ret
 
-
 Music_EndChannel:
 ; called when $ff is encountered w/ subroutine flag set
 ; end music stream
@@ -1469,7 +1449,6 @@ Music_EndChannel:
 	inc hl
 	ld [hl], d
 	ret
-
 
 Music_CallChannel:
 ; call music stream (subroutine)
@@ -1504,7 +1483,6 @@ Music_CallChannel:
 	set SOUND_SUBROUTINE, [hl]
 	ret
 
-
 Music_JumpChannel:
 ; jump
 ; parameters: ll hh ; pointer
@@ -1519,7 +1497,6 @@ Music_JumpChannel:
 	inc hl
 	ld [hl], d
 	ret
-
 
 Music_LoopChannel:
 ; loops xx - 1 times
@@ -1582,7 +1559,6 @@ Music_LoopChannel:
 	ld [hl], e
 	ret
 
-
 Music_SetCondition:
 ; set condition for a jump
 ; used with FB
@@ -1595,7 +1571,6 @@ Music_SetCondition:
 	add hl, bc
 	ld [hl], a
 	ret
-
 
 Music_JumpIf:
 ; conditional jump
@@ -1642,7 +1617,6 @@ Music_JumpIf:
 	inc hl
 	ld [hl], d
 	ret
-
 
 MusicEE:
 ; conditional jump
@@ -1696,7 +1670,6 @@ MusicEE:
 	ld [hl], d
 	ret
 
-
 MusicF9:
 ; sets some flag
 ; seems to be unused
@@ -1704,7 +1677,6 @@ MusicF9:
 	ld a, 1
 	ld [wc2b5], a
 	ret
-
 
 MusicE2:
 ; seems to have been dummied out
@@ -1717,7 +1689,6 @@ MusicE2:
 	add hl, bc
 	set SOUND_UNKN_0B, [hl]
 	ret
-
 
 Music_Vibrato:
 ; vibrato
@@ -1774,7 +1745,6 @@ Music_Vibrato:
 	ld [hl], a
 	ret
 
-
 Music_SlidePitchTo:
 ; set the target for pitch wheel
 ; params: 2
@@ -1806,7 +1776,6 @@ Music_SlidePitchTo:
 	set SOUND_PITCH_WHEEL, [hl]
 	ret
 
-
 Music_Tone:
 ; tone
 ; params: 1 (dw)
@@ -1821,7 +1790,6 @@ Music_Tone:
 	ld [hl], a
 	ret
 
-
 MusicE7:
 ; unused
 ; params: 1
@@ -1833,7 +1801,6 @@ MusicE7:
 	add hl, bc
 	ld [hl], a
 	ret
-
 
 Music_SoundDuty:
 ; sequence of 4 duty cycles to be looped
@@ -1855,7 +1822,6 @@ Music_SoundDuty:
 	ld [hl], a
 	ret
 
-
 MusicE8:
 ; unused
 ; params: 1
@@ -1867,7 +1833,6 @@ MusicE8:
 	add hl, bc
 	ld [hl], a
 	ret
-
 
 Music_ToggleSFX:
 ; toggle something
@@ -1882,7 +1847,6 @@ Music_ToggleSFX:
 .on
 	set SOUND_SFX, [hl]
 	ret
-
 
 Music_ToggleNoise:
 ; toggle music noise sampling
@@ -1906,7 +1870,6 @@ Music_ToggleNoise:
 	ld [wMusicNoiseSampleSet], a
 	ret
 
-
 Music_SFXToggleNoise:
 ; toggle sfx noise sampling
 ; params:
@@ -1928,7 +1891,6 @@ Music_SFXToggleNoise:
 	ld [wSFXNoiseSampleSet], a
 	ret
 
-
 Music_NoteType:
 ; note length
 ;	# frames per 16th note
@@ -1947,7 +1909,6 @@ Music_NoteType:
 	call Music_Intensity
 	ret
 
-
 Music_SoundStatus:
 ; update sound status
 ; params: 1
@@ -1957,7 +1918,6 @@ Music_SoundStatus:
 	add hl, bc
 	set NOTE_UNKN_3, [hl]
 	ret
-
 
 Music_DutyCycle:
 ; duty cycle
@@ -1971,7 +1931,6 @@ Music_DutyCycle:
 	ld [hl], a
 	ret
 
-
 Music_Intensity:
 ; intensity
 ; params: 1
@@ -1983,7 +1942,6 @@ Music_Intensity:
 	ld [hl], a
 	ret
 
-
 Music_Tempo:
 ; global tempo
 ; params: 2
@@ -1994,7 +1952,6 @@ Music_Tempo:
 	ld e, a
 	call SetGlobalTempo
 	ret
-
 
 Music_Octave8:
 Music_Octave7:
@@ -2012,7 +1969,6 @@ Music_Octave1:
 	ld [hl], a
 	ret
 
-
 Music_ForceOctave:
 ; set starting octave
 ; this forces all notes up by the starting octave
@@ -2022,7 +1978,6 @@ Music_ForceOctave:
 	add hl, bc
 	ld [hl], a
 	ret
-
 
 Music_StereoPanning:
 ; stereo panning
@@ -2035,7 +1990,6 @@ Music_StereoPanning:
 	call GetMusicByte
 	ret
 
-
 Music_Panning:
 ; force panning
 ; params: 1
@@ -2046,7 +2000,6 @@ Music_Panning:
 	and [hl]
 	ld [hl], a
 	ret
-
 
 Music_Volume:
 ; set volume
@@ -2063,7 +2016,6 @@ Music_Volume:
 	; set volume
 	ld [wVolume], a
 	ret
-
 
 Music_TempoRelative:
 ; set global tempo to current channel tempo +/- param
@@ -2091,7 +2043,6 @@ Music_TempoRelative:
 	call SetGlobalTempo
 	ret
 
-
 Music_SFXPriorityOn:
 ; turn sfx priority on
 ; params: none
@@ -2099,14 +2050,12 @@ Music_SFXPriorityOn:
 	ld [wSFXPriority], a
 	ret
 
-
 Music_SFXPriorityOff:
 ; turn sfx priority off
 ; params: none
 	xor a
 	ld [wSFXPriority], a
 	ret
-
 
 Music_RestartChannel:
 ; restart current channel from channel header (same bank)
@@ -2142,7 +2091,6 @@ Music_RestartChannel:
 	pop bc ; restore current channel
 	ret
 
-
 Music_NewSong:
 ; new song
 ; params: 2
@@ -2155,7 +2103,6 @@ Music_NewSong:
 	call _PlayMusic
 	pop bc
 	ret
-
 
 GetMusicByte:
 ; returns byte from current address in a
@@ -2188,7 +2135,6 @@ GetMusicByte:
 	; store channeldata in a
 	ld a, [wCurMusicByte]
 	ret
-
 
 GetFrequency:
 ; generate frequency
@@ -2241,7 +2187,6 @@ GetFrequency:
 	and $7 ; top 3 bits for frequency (11 total)
 	ld d, a
 	ret
-
 
 SetNoteDuration:
 ; input: a = note duration in 16ths
@@ -2304,7 +2249,6 @@ SetNoteDuration:
 	jr nz, .loop
 	ret
 
-
 SetGlobalTempo:
 	push bc ; save current channel
 	; are we dealing with music or sfx?
@@ -2334,7 +2278,6 @@ SetGlobalTempo:
 	pop bc ; restore current channel
 	ret
 
-
 Tempo:
 ; input:
 ; 	de: note length
@@ -2351,14 +2294,12 @@ Tempo:
 	ld [hl], a
 	ret
 
-
 StartChannel:
 	call SetLRTracks
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
 	set SOUND_CHANNEL_ON, [hl] ; turn channel on
 	ret
-
 
 SetLRTracks:
 ; set tracks for a the current channel to default
@@ -2379,7 +2320,6 @@ SetLRTracks:
 	ld [hl], a
 	pop de
 	ret
-
 
 _PlayMusic::
 ; load music
@@ -2422,7 +2362,6 @@ _PlayMusic::
 	ld [wMusicNoiseSampleSet], a
 	call MusicOn
 	ret
-
 
 _PlayCry::
 ; Play cry de using parameters:
@@ -2535,7 +2474,6 @@ _PlayCry::
 	call MusicOn
 	ret
 
-
 _PlaySFX::
 ; clear channels if they aren't already
 	call MusicOff
@@ -2634,7 +2572,6 @@ _PlaySFX::
 	xor a
 	ld [wSFXPriority], a
 	ret
-
 
 PlayStereoSFX::
 ; play sfx de
@@ -2737,7 +2674,6 @@ PlayStereoSFX::
 	call MusicOn
 	ret
 
-
 LoadChannel:
 ; prep channel for use
 ; input:
@@ -2782,7 +2718,6 @@ LoadChannel:
 	ld [hl], a
 	ret
 
-
 ChannelInit:
 ; make sure channel is cleared
 ; set default tempo and note length in case nothing is loaded
@@ -2813,7 +2748,6 @@ ChannelInit:
 	pop de
 	ret
 
-
 LoadMusicByte::
 ; input:
 ;   de = current music address
@@ -2825,13 +2759,11 @@ LoadMusicByte::
 	ret
 
 
-
 INCLUDE "audio/notes.asm"
 
 INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/drumkits.asm"
-
 
 GetLRTracks:
 ; gets the default sound l/r channels
@@ -2846,7 +2778,6 @@ GetLRTracks:
 .stereo
 	ld hl, StereoTracks
 	ret
-
 
 MonoTracks:
 ; bit corresponds to track #
@@ -2888,7 +2819,6 @@ ClearChannels::
 	jr nz, .loop
 	ret
 
-
 ClearChannel:
 ; input: hl = beginning hw sound register (rNR10, rNR20, rNR30, rNR40)
 ; output: 00 00 80 00 80
@@ -2905,7 +2835,6 @@ ClearChannel:
 	ld a, $80
 	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
 	ret
-
 
 PlayTrainerEncounterMusic::
 ; input: e = trainer type

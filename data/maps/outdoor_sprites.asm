@@ -31,7 +31,6 @@ OutdoorSprites:
 	dw CherrygroveGroupSprites
 	dw Route47GroupSprites
 
-
 ; Route1 and ViridianCity are connected
 ; Route2North and PewterCity are connected
 ; PalletTown and Route21 are connected

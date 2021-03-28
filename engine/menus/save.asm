@@ -89,7 +89,7 @@ MoveMonWOMail_InsertMon_SaveGame:
 	pop de
 	ld a, e
 	ld [wCurBox], a
-	ld a, $1
+	ld a, TRUE
 	ld [wSaveFileExists], a
 	farcall StageRTCTimeForSave
 	farcall BackupMysteryGift
@@ -231,7 +231,7 @@ SavedTheGame:
 	done
 
 SaveGameData:
-	ld a, 1
+	ld a, TRUE
 	ld [wSaveFileExists], a
 	farcall StageRTCTimeForSave
 	farcall BackupMysteryGift
@@ -585,7 +585,7 @@ TryLoadSaveFile:
 
 
 TryLoadSaveData:
-	xor a
+	xor a ; FALSE
 	ld [wSaveFileExists], a
 	call CheckPrimarySaveFile
 	ld a, [wSaveFileExists]
@@ -650,7 +650,7 @@ CheckPrimarySaveFile:
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
 	call CloseSRAM
-	ld a, $1
+	ld a, TRUE
 	ld [wSaveFileExists], a
 
 .nope

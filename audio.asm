@@ -11,7 +11,6 @@ INCLUDE "audio/cry_pointers.asm"
 INCLUDE "audio/sfx_pointers.asm"
 
 
-
 SECTION "Songs 1", ROMX
 
 INCLUDE "audio/music/route36.asm"
@@ -130,7 +129,6 @@ INCLUDE "audio/music/battletowerlobby.asm"
 INCLUDE "audio/music/mobilecenter.asm"
 
 
-
 SECTION "Extra Songs 1", ROMX
 
 INCLUDE "audio/music/credits.asm"
@@ -163,7 +161,6 @@ INCLUDE "audio/sfx.asm"
 SECTION "Crystal Sound Effects", ROMX
 
 INCLUDE "audio/sfx_crystal.asm"
-
 
 
 SECTION "Cries", ROMX

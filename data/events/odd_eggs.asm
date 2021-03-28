@@ -41,7 +41,6 @@ prob_total = 0
 	prob 10
 	prob 4
 
-
 OddEggs:
 
 OddEgg1:

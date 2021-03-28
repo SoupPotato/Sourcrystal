@@ -151,10 +151,6 @@ FarCopyRadioText::
 
 
 MobileTextBorder::
-
-CELL_PHONE_TOP    EQU $5e
-CELL_PHONE_BOTTOM EQU $5f
-
 	; For mobile link battles only.
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -163,9 +159,9 @@ CELL_PHONE_BOTTOM EQU $5f
 	; Draw a cell phone icon at the
 	; top right corner of the border.
 	hlcoord 19, 12
-	ld [hl], CELL_PHONE_TOP
+	ld [hl], $5e ; top
 	hlcoord 19, 13
-	ld [hl], CELL_PHONE_BOTTOM
+	ld [hl], $5f ; bottom
 	ret
 
 

@@ -25,8 +25,8 @@ StartMenu::
 	ld hl, .MenuHeader
 	jr z, .GotMenuData
 	ld hl, .ContestMenuHeader
-.GotMenuData:
 
+.GotMenuData:
 	call LoadMenuHeader
 	call .SetUpMenuItems
 	ld a, [wBattleMenuCursorBuffer]

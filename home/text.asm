@@ -56,7 +56,6 @@ TextBox::
 
 
 TextBoxBorder::
-
 	; Top
 	push hl
 	ld a, "┌"

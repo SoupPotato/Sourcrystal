@@ -3,7 +3,6 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-
 ; map struct members (see data/maps/maps.asm)
 	const_def
 	const MAP_MAPATTRIBUTES_BANK ; 0
@@ -55,7 +54,6 @@ IN_DARKNESS EQU 1 << IN_DARKNESS_F ; masked with a PALETTE_* constant
 	const FISHGROUP_REMORAID
 	const FISHGROUP_QWILFISH_NO_SWARM
 
-
 ; connection directions (see data/maps/data.asm)
 	const_def
 	const EAST_F
@@ -69,7 +67,6 @@ IN_DARKNESS EQU 1 << IN_DARKNESS_F ; masked with a PALETTE_* constant
 	shift_const WEST
 	shift_const SOUTH
 	shift_const NORTH
-
 
 ; SpawnPoints indexes (see data/maps/spawn_points.asm)
 const_value = -1
@@ -106,7 +103,6 @@ const_value = -1
 	const SPAWN_MT_SILVER
 	const SPAWN_FAST_SHIP
 NUM_SPAWNS EQU const_value
-
 
 ; outdoor sprite limits (see engine/overworld/overworld.asm)
 SPRITE_GFX_LIST_CAPACITY EQU $20

@@ -33,7 +33,6 @@ Marts:
 	dw MartUnderground
 .End
 
-
 MartCherrygrove:
 	db 4 ; # items
 	db POTION

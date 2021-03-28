@@ -35,7 +35,6 @@ _Start::
 
 
 Init::
-
 	di
 
 	xor a
